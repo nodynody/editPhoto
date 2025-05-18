@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_file, jsonify
+from flask import Flask, request, render_template, send_file, jsonify, send_from_directory
 from PIL import Image, ImageDraw, ImageEnhance
 from werkzeug.utils import secure_filename
 import os
@@ -55,7 +55,7 @@ def adjust_image(image, saturation, brightness):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_from_directory('.', 'index.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
